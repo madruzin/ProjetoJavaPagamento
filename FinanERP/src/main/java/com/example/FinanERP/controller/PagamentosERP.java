@@ -36,4 +36,11 @@ public class PagamentosERP {
         var pagamento = pagamentosRepository.getReferenceById(dados.id());
         pagamento.atualizarInformacoes(dados);
     }
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluirPagamento(@PathVariable Long id){
+        pagamentosRepository.deleteById(id);
+
+    }
 }
+

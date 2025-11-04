@@ -49,6 +49,10 @@ function exibePagamentos(dados){
         btnExcluir.textContent= "Excluir"
         btnExcluir.className = "btn-excluir"
         btnExcluir.dataset.id = pagamento.id
+
+        btnExcluir.addEventListener("click", ()=>{
+            excluirPagamento(pagamento.id)
+        })
        
         //criar o td ações
         let acoes= document.createElement("td")
@@ -71,7 +75,22 @@ function exibePagamentos(dados){
     });
 
    
-
+function excluirPagamento(id){
+    if(confirm("Tem certeza que deseja excluir o pagamento? ")){
+        fetch(`http://localhost:8080/pagamentos/${id}` , {
+            method: "DELETE"
+        }).then(res => {
+            if(res.ok){
+                alert("PAGAMENTO EXCLUÍDO COM SUCESSO")
+                buscaPagamentos()
+            }else{
+                alert("ERRO AO EXCLUIR")
+            }
+        }).catch(error =>{
+            alert("ERrO AO CONECTAR")
+        })
+    }
+}
 
 
 }
