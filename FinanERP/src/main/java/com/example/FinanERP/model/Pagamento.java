@@ -82,4 +82,11 @@ public class Pagamento {
 
     public Pagamento() {
     }
+
+    public void atualizarInformacoes(DadosAtualizacaoPagamento dados) {
+        this.nomeCliente = dados.nomeCliente();
+        this.valor = dados.valor();
+        this.dataPagamento = dados.dataPagamento();
+        this.descricao = dados.descricao();
+    }
 }

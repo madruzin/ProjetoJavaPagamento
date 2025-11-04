@@ -41,7 +41,7 @@ function exibePagamentos(dados){
         btnEditar.dataset.id = pagamento.id
 
         btnEditar.addEventListener("click", ()=>{
-            abrirFormulario(pagamento)
+            abrirFormulario(pagamento, linhaPagamento)
         })
     
         //Botão de excluir
@@ -75,10 +75,15 @@ function exibePagamentos(dados){
 
 
 }
-
-function abrirFormulario(pagamento){
+//Editar pagamento
+function abrirFormulario(pagamento, linha){
     let formEdicao = document.getElementById("formEdicao")
     formEdicao.style.display ="block"
+
+    //Move o formulario para logo abaixo da linha Clicada
+    linha.insertAdjacentElement("afterend" , formEdicao)
+
+    document.getElementById("editId").value = pagamento.id
     document.getElementById("editNome").value = pagamento.nomeCliente
     document.getElementById("editDescricao").value = pagamento.descricao
     document.getElementById("editValor").value = pagamento.valor
